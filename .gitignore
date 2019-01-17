@@ -10,6 +10,8 @@
 
 # production
 /build
+/platforms
+/plugins
 
 # misc
 .DS_Store
