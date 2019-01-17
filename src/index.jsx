@@ -5,11 +5,12 @@ import './index.css';
 import App from './App.jsx';
 import * as serviceWorker from './serviceWorker';
 import CounterStore from './stores/CounterStore';
+import MarketStore from './stores/MarketStore';
 
 const counterStore = new CounterStore();
 const startApp = () => {
   ReactDOM.render(
-    <Provider counter={counterStore}>
+    <Provider counterStore={counterStore} marketStore={MarketStore}>
       <App />
     </Provider>,
     document.getElementById('root')

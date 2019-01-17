@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 // import { observable, action } from 'mobx';
 import { observer, inject } from 'mobx-react';
 
-// @inject('counter')
+// @inject('counterStore')
 @inject(stores => ({
-  number: stores.counter.number,
-  increase: stores.counter.increase,
-  decrease: stores.counter.decrease,
+  number: stores.counterStore.number,
+  increase: stores.counterStore.increase,
+  decrease: stores.counterStore.decrease,
 }))
 @observer
 class Counter extends Component {
@@ -39,4 +39,4 @@ class Counter extends Component {
   }
 }
 
-export default observer(Counter);
+export default Counter;
