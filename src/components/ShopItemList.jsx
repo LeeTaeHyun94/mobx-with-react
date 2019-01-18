@@ -16,6 +16,6 @@ const ShopItemList = ({ onPut }) => {
   return <div>{itemList}</div>;
 };
 
-export default inject(({ marketStore }) => ({ onPut: marketStore.put }))(
-  observer(ShopItemList)
-);
+export default inject(rootStore => ({
+  onPut: rootStore.marketStore.put,
+}))(observer(ShopItemList));
