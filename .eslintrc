@@ -4,7 +4,7 @@
     "es6": true,
     "node": true
   },
-  "extends": ["airbnb", "prettier"],
+  "extends": "airbnb",
   "parser": "babel-eslint",
   "plugins": ["jsx-max-len"],
   "rules": {
@@ -33,6 +33,7 @@
     "react/no-array-index-key": "off",
     "react/destructuring-assignment": "off",
     "no-underscore-dangle": "off",
-    "function-paren-newline": "off"
+    "function-paren-newline": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
   }
 }

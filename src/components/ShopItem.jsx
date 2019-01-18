@@ -1,18 +1,17 @@
 import React from 'react';
 import './ShopItem.css';
 
-const ShopItem = ({ name, price, onPut }) => (
+const ShopItem = a => (
   <div
     className="ShopItem"
-    onClick={() => onPut(name, price)}
-    onKeyPress={() => onPut(name, price)}
+    onClick={() => a.onPut(a.name, a.price)}
     role="button"
     tabIndex={0}
   >
-    <h4>{name}</h4>
+    <h4>{a.name}</h4>
     <div>
       $&nbsp;
-      {price}
+      {a.price}
     </div>
   </div>
 );

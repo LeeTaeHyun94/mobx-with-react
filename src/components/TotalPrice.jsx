@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
-@inject(({ marketStore }) => ({ total: marketStore.total }))
+@inject(({ rootStore }) => ({ total: rootStore.marketStore.total }))
 @observer
 class TotalPrice extends Component {
   render() {

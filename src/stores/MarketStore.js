@@ -24,7 +24,7 @@ export default class MarketStore {
   };
 
   @action
-  take = name => {
+  take = (name) => {
     const itemToTake = this.selectedItems.find(item => item.name === name);
     itemToTake.count -= 1;
     if (itemToTake.count === 0) this.selectedItems.remove(itemToTake);
@@ -35,7 +35,7 @@ export default class MarketStore {
     // console.log('total computing...');
     return this.selectedItems.reduce(
       (pre, cur) => pre + cur.price * cur.count,
-      0
+      0,
     );
   }
 }

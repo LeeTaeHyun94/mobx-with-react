@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
 // @inject('counterStore')
-@inject(rootStore => ({
+@inject(({ rootStore }) => ({
   number: rootStore.counterStore.number,
   increase: rootStore.counterStore.increase,
   decrease: rootStore.counterStore.decrease,

@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import CartItem from './CartItem.jsx';
 
-const CartItemList = ({ items, onTake }) => {
-  const itemList = items.map(item => (
-    <CartItem item={item} key={item.name} onTake={onTake} />
-  ));
-  return <div>{itemList}</div>;
-};
+class CartItemList extends Component {
+  render() {
+    const itemList = this.props.items.map(item => (
+      <CartItem item={item} key={item.name} onTake={this.props.onTake} />
+    ));
+    return <div>{itemList}</div>;
+  }
+}
+// const CartItemList = ({ items, onTake }) => {
+//   const itemList = items.map(item => (
+//     <CartItem item={item} key={item.name} onTake={onTake} />
+//   ));
+//   return <div>{itemList}</div>;
+// };
 
-export default inject(({ marketStore }) => ({
-  items: marketStore.selectedItems,
-  onTake: marketStore.take,
+export default inject(({ rootStore }) => ({
+  items: rootStore.marketStore.selectedItems,
+  onTake: rootStore.marketStore.take,
 }))(observer(CartItemList));

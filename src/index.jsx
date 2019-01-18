@@ -7,14 +7,16 @@ import * as serviceWorker from './serviceWorker';
 // import CounterStore from './stores/CounterStore';
 // import MarketStore from './stores/MarketStore';
 import MarketCounterRootStore from './stores/MarketCounterRootStore';
+import ItemStore from './stores/ItemStore';
 
 const marketCounterRootStore = new MarketCounterRootStore();
+const itemStore = new ItemStore();
 const startApp = () => {
   ReactDOM.render(
-    <Provider {...marketCounterRootStore}>
+    <Provider rootStore={marketCounterRootStore} itemStore={itemStore}>
       <App />
     </Provider>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
   serviceWorker.register();
 };
