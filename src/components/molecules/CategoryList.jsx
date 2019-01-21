@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import List from '@material-ui/core/List';
+import { inject } from 'mobx-react';
 import Category from '../atoms/Category';
 
+@inject(({ categoryStore }) => ({ categoryList: categoryStore.categoryList }))
 class CategoryList extends Component {
   render() {
+    const categoryList = this.props.categoryList.map(category => (
+      <Category categoryName={category.name} categoryId={category.id} />
+    ));
     return (
       <List component="nav">
-        <Category categoryName="test1" />
-        <Category categoryName="test2" />
-        <Category categoryName="test3" />
-        <Category categoryName="test4" />
+        {categoryList}
       </List>
     );
   }
