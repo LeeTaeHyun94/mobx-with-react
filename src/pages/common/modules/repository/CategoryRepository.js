@@ -5,7 +5,7 @@ class CategoryRepository {
 
     findAll() {
       return axios.get(this.URL, {
-        headers: { Authorization: 'Bearer sq0atp-4h0aJCbCqmKn-fngaFt0_w' },
+        headers: { Authorization: 'Bearer ' },
       });
     }
 }
