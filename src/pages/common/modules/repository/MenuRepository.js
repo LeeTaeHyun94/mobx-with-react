@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-class CategoryRepository {
-    URL = 'https://connect.squareup.com/v1/H8HSDY0CXSXVA/categories';
+class MenuRepository {
+    URL = 'https://connect.squareup.com/v1/H8HSDY0CXSXVA/items';
 
     findAll() {
       return axios.get(this.URL, {
@@ -10,4 +10,4 @@ class CategoryRepository {
     }
 }
 
-export default new CategoryRepository();
+export default new MenuRepository();

@@ -5,7 +5,7 @@ class RestaurantInfoRepository {
 
     findAllRestaurant() {
       return axios.get(this.URL, {
-        headers: { Authorization: 'Bearer sq0atp-1p3Wwl0XOPajvWq_yVZS9g' },
+        headers: { Authorization: 'Bearer sq0atp-4h0aJCbCqmKn-fngaFt0_w' },
       });
     }
 }

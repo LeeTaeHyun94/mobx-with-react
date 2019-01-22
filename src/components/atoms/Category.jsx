@@ -1,9 +1,9 @@
 import React from 'react';
 import { ListItem, Divider, ListItemText } from '@material-ui/core';
 
-const Category = ({ categoryName, categoryId }) => (
-  <div id={categoryId}>
-    <ListItem button>
+const Category = ({ categoryName, getMenu }) => (
+  <div>
+    <ListItem button onClick={() => getMenu(categoryName)}>
       <ListItemText primary={categoryName} />
     </ListItem>
     <Divider />

@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import SideBar from '../../components/organisms/SideBar';
 import RestaurantName from '../../components/atoms/RestaurantName';
-// import { Button } from '@material-ui/core';
+import MenuGridList from '../../components/organisms/MenuGridList';
 
 const drawerWidth = 240;
 
@@ -46,7 +46,7 @@ const styles = theme => ({
   },
 });
 
-class ResponsiveDrawer extends React.Component {
+class MenuPage extends React.Component {
   state = {
     mobileOpen: false,
   };
@@ -114,13 +114,11 @@ class ResponsiveDrawer extends React.Component {
           </Toolbar>
         </AppBar>
         <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography paragraph />
-          <Typography paragraph />
+          <MenuGridList />
         </main>
       </div>
     );
   }
 }
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+export default withStyles(styles, { withTheme: true })(MenuPage);

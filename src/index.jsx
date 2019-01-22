@@ -9,19 +9,23 @@ import * as serviceWorker from './serviceWorker';
 import MarketCounterRootStore from './stores/MarketCounterRootStore';
 import ItemStore from './stores/ItemStore';
 import RestaurantInfoStore from './pages/common/modules/store/RestaurantInfoStore';
-import ResponsiveDrawer from './pages/common/ResponsiveDrawer';
+import MenuPage from './pages/Menu/MenuPage';
+import MenuStore from './pages/common/modules/store/MenuStore';
 
 const marketCounterRootStore = new MarketCounterRootStore();
 const itemStore = new ItemStore();
 const restaurantInfoStore = new RestaurantInfoStore();
+const menuStore = new MenuStore();
+
 const startApp = () => {
   ReactDOM.render(
     <Provider
       rootStore={marketCounterRootStore}
       itemStore={itemStore}
       restaurantInfoStore={restaurantInfoStore}
+      menuStore={menuStore}
     >
-      <ResponsiveDrawer />
+      <MenuPage />
     </Provider>,
     document.getElementById('root'),
   );
