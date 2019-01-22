@@ -7,6 +7,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import { inject, observer } from 'mobx-react';
+import { Typography } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -26,15 +27,21 @@ const styles = theme => ({
 });
 
 function MenuGridList(props) {
-  const { classes, menus } = props;
+  const {
+    classes, menus, selectedCategory, changeState,
+  } = props;
   return (
     <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList}>
         <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <ListSubheader component="div">December</ListSubheader>
+          <ListSubheader component="div">
+            <Typography variant="h6">
+              {selectedCategory}
+            </Typography>
+          </ListSubheader>
         </GridListTile>
         {menus.map(tile => (
-          <GridListTile key={tile.menuImgUrl}>
+          <GridListTile key={tile.menuImgUrl} onClick={() => changeState('DETAIL_MENU')}>
             <img src={tile.menuImgUrl} alt={tile.menuName} />
             <GridListTileBar
               title={tile.menuName}
@@ -57,6 +64,8 @@ function MenuGridList(props) {
   );
 }
 
-export default inject(({ menuStore }) => ({
-  menus: menuStore.resultList,
+export default inject(({ menuRootStore, stateStore }) => ({
+  menus: menuRootStore.menuStore.resultList,
+  selectedCategory: menuRootStore.menuStore.selectedCategory,
+  changeState: stateStore.changeState,
 }))(observer(withStyles(styles)(MenuGridList)));

@@ -1,12 +1,15 @@
 import autobind from 'autobind-decorator';
 import { observable, action } from 'mobx';
 import MenuRepository from '../repository/MenuRepository';
-import MenuModel from '../model/MenuModel';
+import SimpleMenuModel from '../../../Menu/modules/model/SimpleMenuModel';
 
 @autobind
 class MenuStore {
     @observable
     menuList = [];
+
+    @observable
+    selectedCategory;
 
     @observable
     resultList = [];
@@ -15,16 +18,23 @@ class MenuStore {
       this.rootStore = rootStore;
       MenuRepository.findAll().then((res) => {
         this.menuList = res.data;
+        this.selectedCategory = res.data[0].category.name;
+        this.updateResultList();
       });
     }
 
     @action
     findByCategory = (category) => {
+      this.selectedCategory = category;
+      this.updateResultList();
+    };
+
+    updateResultList() {
       const result = [];
       this.menuList.forEach((element) => {
-        if (element.category.name === category) {
+        if (element.category.name === this.selectedCategory) {
           result.push(
-            new MenuModel(
+            new SimpleMenuModel(
               element.name,
               element.master_image.url,
               element.variations[0].price_money.amount,
@@ -32,7 +42,7 @@ class MenuStore {
         }
       });
       this.resultList = result;
-    };
+    }
 }
 
 export default MenuStore;

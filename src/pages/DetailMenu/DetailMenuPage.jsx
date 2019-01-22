@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import SideBar from '../../components/organisms/SideBar';
 import RestaurantName from '../../components/atoms/RestaurantName';
-import MenuGridList from '../../components/organisms/MenuGridList';
 
 const drawerWidth = 240;
 
@@ -115,7 +114,6 @@ class MenuPage extends React.Component {
         </AppBar>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <MenuGridList />
         </main>
       </div>
     );

@@ -9,13 +9,15 @@ import * as serviceWorker from './serviceWorker';
 import MarketCounterRootStore from './stores/MarketCounterRootStore';
 import ItemStore from './stores/ItemStore';
 import RestaurantInfoStore from './pages/common/modules/store/RestaurantInfoStore';
-import MenuPage from './pages/Menu/MenuPage';
-import MenuStore from './pages/common/modules/store/MenuStore';
+import MenuRootStore from './pages/common/modules/store/MenuRootStore';
+import StateStore from './pages/common/modules/store/StateStore';
+import MainContainer from './pages/common/MainContainer';
 
 const marketCounterRootStore = new MarketCounterRootStore();
 const itemStore = new ItemStore();
 const restaurantInfoStore = new RestaurantInfoStore();
-const menuStore = new MenuStore();
+const menuRootStore = new MenuRootStore();
+const stateStore = new StateStore();
 
 const startApp = () => {
   ReactDOM.render(
@@ -23,9 +25,10 @@ const startApp = () => {
       rootStore={marketCounterRootStore}
       itemStore={itemStore}
       restaurantInfoStore={restaurantInfoStore}
-      menuStore={menuStore}
+      menuRootStore={menuRootStore}
+      stateStore={stateStore}
     >
-      <MenuPage />
+      <MainContainer />
     </Provider>,
     document.getElementById('root'),
   );

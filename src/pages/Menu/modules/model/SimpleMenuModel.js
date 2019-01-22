@@ -2,7 +2,7 @@ import autobind from 'autobind-decorator';
 import { observable } from 'mobx';
 
 @autobind
-class MenuModel {
+class SimpleMenuModel {
     @observable
     menuName='';
 
@@ -19,4 +19,4 @@ class MenuModel {
     }
 }
 
-export default MenuModel;
+export default SimpleMenuModel;

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import List from '@material-ui/core/List';
-import { inject } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import Category from '../atoms/Category';
 
-@inject(({ categoryStore, menuStore }) => ({
+@inject(({ categoryStore, menuRootStore, stateStore }) => ({
   categoryList: categoryStore.categoryList,
-  findByCategory: menuStore.findByCategory,
+  findByCategory: menuRootStore.menuStore.findByCategory,
+  selectedCategory: menuRootStore.menuStore.selectedCategory,
+  changeState: stateStore.changeState,
 }))
+@observer
 class CategoryList extends Component {
   render() {
     const categoryList = this.props.categoryList.map(category => (
@@ -14,6 +17,8 @@ class CategoryList extends Component {
         categoryName={category.name}
         key={category.id}
         getMenu={this.props.findByCategory}
+        selectedCategory={this.props.selectedCategory}
+        changeState={this.props.changeState}
       />
     ));
     return (

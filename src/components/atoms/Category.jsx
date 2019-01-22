@@ -1,10 +1,25 @@
 import React from 'react';
-import { ListItem, Divider, ListItemText } from '@material-ui/core';
+import { ListItem, Divider } from '@material-ui/core';
 
-const Category = ({ categoryName, getMenu }) => (
-  <div>
-    <ListItem button onClick={() => getMenu(categoryName)}>
-      <ListItemText primary={categoryName} />
+const Category = ({
+  categoryName, getMenu, selectedCategory, changeState,
+}) => (
+  <div style={{ backgroundColor: '#64b5f6' }}>
+    <ListItem
+      button
+      selected={selectedCategory === categoryName}
+      onClick={() => {
+        getMenu(categoryName);
+        changeState('MENU');
+      }}
+    >
+      <div style={{
+        color: 'white',
+        fontWeight: selectedCategory === categoryName ? 'bold' : 'normal',
+      }}
+      >
+        {categoryName}
+      </div>
     </ListItem>
     <Divider />
   </div>
