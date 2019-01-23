@@ -5,29 +5,38 @@ import DetailMenuRepository from '../repository/DetailMenuRepository';
 
 @autobind
 class DetailMenuStore {
-    @observable
-    selectedMenu;
+  @observable
+  selectedMenuId;
 
-    selectedMenuModifierList = [];
+  @observable
+  selectedMenu;
 
-    constructor(rootStore) {
-      this.rootStore = rootStore;
-    }
+  @observable
+  selectedMenuModifierList = [];
 
-    @action
-    findDetailMenuById = (id) => {
-      DetailMenuRepository.findById(id).then((res) => {
-        const menu = res.data;
-        this.selectedMenu = new DetailMenuModel(
-          menu.id,
-          menu.name,
-          menu.master_image.url,
-          menu.variations[0].price_money.amount,
-          menu.modifier_lists,
-        );
-        this.selectedMenuModifierList = menu.modifier_lists;
-      });
-    }
+  constructor(rootStore) {
+    this.rootStore = rootStore;
+  }
+
+  @action
+  setSelectedMenuId = (id) => {
+    this.selectedMenuId = id;
+  }
+
+  @action
+  findDetailMenuById = (id) => {
+    DetailMenuRepository.findById(id).then((res) => {
+      const menu = res.data;
+      this.selectedMenu = new DetailMenuModel(
+        menu.id,
+        menu.name,
+        menu.master_image.url,
+        menu.variations[0].price_money.amount,
+        menu.modifier_lists,
+      );
+      this.selectedMenuModifierList = menu.modifier_lists;
+    });
+  }
 }
 
 export default DetailMenuStore;

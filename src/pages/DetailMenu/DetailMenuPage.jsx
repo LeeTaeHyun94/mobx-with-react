@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { observer, inject } from 'mobx-react';
 import SideBar from '../../components/organisms/SideBar';
 import RestaurantName from '../../components/atoms/RestaurantName';
 import DetailMenuContainer from '../../components/organisms/DetailMenuContainer';
@@ -46,7 +47,7 @@ const styles = theme => ({
   },
 });
 
-class MenuPage extends React.Component {
+class DetailMenuPage extends React.Component {
   state = {
     mobileOpen: false,
   };
@@ -115,11 +116,15 @@ class MenuPage extends React.Component {
         </AppBar>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <DetailMenuContainer />
+          {this.props.selectedMenu === undefined
+            ? <div />
+            : <DetailMenuContainer />}
         </main>
       </div>
     );
   }
 }
 
-export default withStyles(styles, { withTheme: true })(MenuPage);
+export default inject(({ detailMenuStore }) => ({
+  selectedMenu: detailMenuStore.selectedMenu,
+}))(observer(withStyles(styles, { withTheme: true })(DetailMenuPage)));

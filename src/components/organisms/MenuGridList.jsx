@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -44,8 +45,8 @@ function MenuGridList(props) {
           <GridListTile
             key={tile.menuId}
             onClick={() => {
-              changeState('DETAIL_MENU');
               selectMenu(tile.menuId);
+              changeState('DETAIL_MENU');
             }}
           >
             <img src={tile.menuImgUrl} alt={tile.menuName} />

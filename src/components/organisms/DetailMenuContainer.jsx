@@ -3,21 +3,20 @@ import { Typography, Divider } from '@material-ui/core';
 import { observer, inject } from 'mobx-react';
 
 @inject(({ detailMenuStore }) => ({
-  selectedMenu: detailMenuStore.selectedMenu,
+  menu: detailMenuStore.selectedMenu,
 }))
 @observer
 class DetailMenuContainer extends Component {
   render() {
-    const menu = this.props.selectedMenu;
     return (
       <div>
         <Typography variant="h4">
-          {menu.name}
+          {this.props.menu.name}
         </Typography>
         <Divider />
         <img
-          src={menu.imgUrl}
-          alt={menu.name}
+          src={this.props.menu.imgUrl}
+          alt={this.props.menu.name}
           style={{ paddingTop: 18, width: 350, height: 350 }}
         />
       </div>
