@@ -28,7 +28,7 @@ const styles = theme => ({
 
 function MenuGridList(props) {
   const {
-    classes, menus, selectedCategory, changeState,
+    classes, menus, selectedCategory, changeState, selectMenu,
   } = props;
   return (
     <div className={classes.root}>
@@ -41,7 +41,13 @@ function MenuGridList(props) {
           </ListSubheader>
         </GridListTile>
         {menus.map(tile => (
-          <GridListTile key={tile.menuImgUrl} onClick={() => changeState('DETAIL_MENU')}>
+          <GridListTile
+            key={tile.menuId}
+            onClick={() => {
+              changeState('DETAIL_MENU');
+              selectMenu(tile.menuId);
+            }}
+          >
             <img src={tile.menuImgUrl} alt={tile.menuName} />
             <GridListTileBar
               title={tile.menuName}
@@ -64,8 +70,9 @@ function MenuGridList(props) {
   );
 }
 
-export default inject(({ menuRootStore, stateStore }) => ({
-  menus: menuRootStore.menuStore.resultList,
-  selectedCategory: menuRootStore.menuStore.selectedCategory,
+export default inject(({ menuStore, stateStore, detailMenuStore }) => ({
+  menus: menuStore.resultList,
+  selectedCategory: menuStore.selectedCategory,
   changeState: stateStore.changeState,
+  selectMenu: detailMenuStore.findDetailMenuById,
 }))(observer(withStyles(styles)(MenuGridList)));

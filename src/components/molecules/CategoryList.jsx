@@ -3,10 +3,10 @@ import List from '@material-ui/core/List';
 import { inject, observer } from 'mobx-react';
 import Category from '../atoms/Category';
 
-@inject(({ categoryStore, menuRootStore, stateStore }) => ({
+@inject(({ categoryStore, menuStore, stateStore }) => ({
   categoryList: categoryStore.categoryList,
-  findByCategory: menuRootStore.menuStore.findByCategory,
-  selectedCategory: menuRootStore.menuStore.selectedCategory,
+  findByCategory: menuStore.findByCategory,
+  selectedCategory: menuStore.selectedCategory,
   changeState: stateStore.changeState,
 }))
 @observer

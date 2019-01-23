@@ -3,20 +3,24 @@ import { observable } from 'mobx';
 
 @autobind
 class SimpleMenuModel {
-    @observable
-    menuName='';
+  @observable
+  menuId;
 
-    @observable
-    menuImgUrl='';
+  @observable
+  menuName='';
 
-    @observable
-    price=0;
+  @observable
+  menuImgUrl='';
 
-    constructor(name, url, price) {
-      this.menuName = name;
-      this.menuImgUrl = url;
-      this.price = price;
-    }
+  @observable
+  price=0;
+
+  constructor(id, name, url, price) {
+    this.menuId = id;
+    this.menuName = name;
+    this.menuImgUrl = url;
+    this.price = price;
+  }
 }
 
 export default SimpleMenuModel;
