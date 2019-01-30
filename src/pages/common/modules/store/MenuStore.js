@@ -13,6 +13,9 @@ class MenuStore {
     @observable
     resultList = [];
 
+    @observable
+    selectedMenu;
+
     constructor() {
       MenuRepository.findAll().then((res) => {
         this.menuList = res.data;
@@ -35,6 +38,7 @@ class MenuStore {
             new SimpleMenuModel(
               element.id,
               element.name,
+              element.description,
               element.master_image.url,
               element.variations[0].price_money.amount,
             ));
@@ -42,6 +46,15 @@ class MenuStore {
       });
       this.resultList = result;
     }
+
+    @action
+    selectMenu = (menuId) => {
+      this.resultList.forEach((element) => {
+        if (element.id === menuId) {
+          this.selectedMenu = element;
+        }
+      });
+    };
 }
 
 export default MenuStore;

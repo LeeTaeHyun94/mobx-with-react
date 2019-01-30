@@ -4,21 +4,25 @@ import { observable } from 'mobx';
 @autobind
 class SimpleMenuModel {
   @observable
-  menuId;
+  id;
 
   @observable
-  menuName='';
+  name='';
 
   @observable
-  menuImgUrl='';
+  description='';
+
+  @observable
+  imgUrl='';
 
   @observable
   price=0;
 
-  constructor(id, name, url, price) {
-    this.menuId = id;
-    this.menuName = name;
-    this.menuImgUrl = url;
+  constructor(id, name, description, url, price) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.imgUrl = url;
     this.price = price;
   }
 }
