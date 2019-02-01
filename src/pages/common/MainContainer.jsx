@@ -4,9 +4,9 @@ import MenuPage from '../Menu/MenuPage';
 import DetailMenuPage from '../DetailMenu/DetailMenuPage';
 
 function MainContainer(props) {
-  const { state } = props;
+  const { pageState } = props;
   let page;
-  switch (state) {
+  switch (pageState) {
     case 'WAITING':
     case 'MENU': page = <MenuPage />; break;
     case 'DETAIL_MENU': page = <DetailMenuPage />; break;
@@ -16,6 +16,6 @@ function MainContainer(props) {
   return page;
 }
 
-export default inject(({ stateStore }) => ({
-  state: stateStore.state,
+export default inject(({ pageStateStore }) => ({
+  pageState: pageStateStore.pageState,
 }))(observer(MainContainer));

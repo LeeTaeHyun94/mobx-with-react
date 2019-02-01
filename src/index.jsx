@@ -9,17 +9,21 @@ import * as serviceWorker from './serviceWorker';
 import MarketCounterRootStore from './stores/MarketCounterRootStore';
 import ItemStore from './stores/ItemStore';
 import RestaurantInfoStore from './pages/common/modules/store/RestaurantInfoStore';
-import StateStore from './pages/common/modules/store/StateStore';
+import PageStateStore from './pages/common/modules/store/PageStateStore';
 import MainContainer from './pages/common/MainContainer';
 import MenuStore from './pages/common/modules/store/MenuStore';
 import DetailMenuStore from './pages/DetailMenu/modules/store/DetailMenuStore';
+import CategoryStore from './pages/common/modules/store/CategoryStore';
+import MenuModalStateStore from './pages/Menu/modules/store/MenuModalStateStore';
 
 const marketCounterRootStore = new MarketCounterRootStore();
 const itemStore = new ItemStore();
 const restaurantInfoStore = new RestaurantInfoStore();
 const menuStore = new MenuStore();
-const stateStore = new StateStore();
+const pageStateStore = new PageStateStore();
 const detailMenuStore = new DetailMenuStore();
+const categoryStore = new CategoryStore();
+const menuModalStateStore = new MenuModalStateStore();
 
 const startApp = () => {
   ReactDOM.render(
@@ -28,8 +32,10 @@ const startApp = () => {
       itemStore={itemStore}
       restaurantInfoStore={restaurantInfoStore}
       menuStore={menuStore}
-      stateStore={stateStore}
+      pageStateStore={pageStateStore}
       detailMenuStore={detailMenuStore}
+      categoryStore={categoryStore}
+      menuModalStateStore={menuModalStateStore}
     >
       <MainContainer />
     </Provider>,

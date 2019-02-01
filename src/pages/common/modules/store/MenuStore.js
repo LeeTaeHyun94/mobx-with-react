@@ -14,7 +14,7 @@ class MenuStore {
     resultList = [];
 
     @observable
-    selectedMenu;
+    selectedMenu = new SimpleMenuModel();
 
     constructor() {
       MenuRepository.findAll().then((res) => {

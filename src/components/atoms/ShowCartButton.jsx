@@ -6,7 +6,8 @@ class ShowCartButton extends Component {
     return (
       <div>
         <Button variant="success">
-            Cart
+          <i className="fas fa-shopping-cart" />
+          &nbsp;Cart&nbsp;
           <Badge variant="light">2</Badge>
         </Button>
       </div>

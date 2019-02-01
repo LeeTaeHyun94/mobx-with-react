@@ -126,13 +126,84 @@
 // export default withStyles(styles, { withTheme: true })(MenuPage);
 
 import React, { Component } from 'react';
+import {
+  Tab, Row, Col, Modal, Button, Container,
+} from 'react-bootstrap';
+import { inject, observer } from 'mobx-react';
 import CommonHeader from '../../components/molecules/CommonHeader';
+import CategoryListGroup from '../../components/molecules/CategoryListGroup';
+import MenuCardDeck from '../../components/molecules/MenuCardDeck';
 
+@inject(({ menuStore, menuModalStateStore }) => ({
+  selectedMenu: menuStore.selectedMenu,
+  menuModalState: menuModalStateStore.menuModalState,
+  changeMenuModalState: menuModalStateStore.changeState,
+}))
+@observer
 class MenuPage extends Component {
   render() {
     return (
-      <div>
+      <div style={{ height: '100%', width: '100%', minHeight: 768 }}>
         <CommonHeader />
+        <Tab.Container>
+          <Row style={{ height: '100%', width: '100%', minHeight: 704 }}>
+            <Col sm={2}>
+              <CategoryListGroup />
+            </Col>
+            <Col>
+              <MenuCardDeck />
+            </Col>
+          </Row>
+        </Tab.Container>
+        <Modal
+          show={this.props.menuModalState}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header>
+            <Button onClick={this.props.changeMenuModalState} variant="dark">
+              <i className="fas fa-chevron-left" />
+              &nbsp;Back
+            </Button>
+          </Modal.Header>
+          <Modal.Body>
+            <Container>
+              <Row>
+                <Col>
+                  <img
+                    src={this.props.selectedMenu.imgUrl}
+                    alt={this.props.selectedMenu.name}
+                    style={{ height: 200 }}
+                  />
+                </Col>
+                <Col>
+                  <Row>
+                    <Col>
+                      <h4>{this.props.selectedMenu.name}</h4>
+                    </Col>
+                    <Col>
+                      <h4>
+                        $&nbsp;
+                        {this.props.selectedMenu.price}
+                      </h4>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <br />
+                    {this.props.selectedMenu.description}
+                  </Row>
+                </Col>
+              </Row>
+            </Container>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => { this.props.changeMenuModalState(); }}>
+              <i className="fas fa-cart-plus" />
+              &nbsp;Add to cart
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }

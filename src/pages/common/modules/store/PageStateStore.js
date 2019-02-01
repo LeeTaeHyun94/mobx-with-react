@@ -2,15 +2,15 @@ import autobind from 'autobind-decorator';
 import { observable, action } from 'mobx';
 
 @autobind
-class StateStore {
+class PageStateStore {
     // WAITING, MENU, DETAIL_MENU, ORDER
     @observable
-    state = 'MENU';
+    pageState = 'MENU';
 
     @action
     changeState = (state) => {
-      this.state = state;
+      this.pageState = state;
     };
 }
 
-export default StateStore;
+export default PageStateStore;

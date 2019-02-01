@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import ShowCartButton from '../atoms/ShowCartButton';
-import CallServerButton from '../atoms/CallServerButton';
 import CallPennyButton from '../atoms/CallPennyButton';
+import CallServerButton from '../atoms/CallServerButton';
 
 class CommonHeader extends Component {
   render() {
@@ -12,8 +12,11 @@ class CommonHeader extends Component {
           <Navbar.Brand>
             <ShowCartButton />
           </Navbar.Brand>
-          <Navbar.Collapse>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto" />
             <CallServerButton />
+            &nbsp;
             <CallPennyButton />
           </Navbar.Collapse>
         </Navbar>

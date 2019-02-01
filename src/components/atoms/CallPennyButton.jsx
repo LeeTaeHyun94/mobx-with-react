@@ -5,7 +5,7 @@ class CallPennyButton extends Component {
   render() {
     return (
       <div>
-        <Button variant="primary">Call Penny</Button>
+        <Button variant="info">Call Penny</Button>
       </div>
     );
   }
