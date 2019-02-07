@@ -11,13 +11,13 @@ const MenuCard = ({
     }}
     role="button"
     tabIndex={0}
-    style={{ width: '33%', height: '40%' }}
+    style={{ width: '33%' }}
   >
     <Card>
-      <Card.Img variant="top" src={url} style={{ height: 200 }} />
+      <Card.Img variant="top" src={url} style={{ height: 400 }} />
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
-        <div>
+        <Card.Title style={{ fontSize: 'xx-large' }}>{name}</Card.Title>
+        <div style={{ fontSize: 'x-large' }}>
           $&nbsp;
           {price}
         </div>

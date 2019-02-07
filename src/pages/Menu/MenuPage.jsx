@@ -143,10 +143,10 @@ import MenuCardDeck from '../../components/molecules/MenuCardDeck';
 class MenuPage extends Component {
   render() {
     return (
-      <div style={{ height: '100%', width: '100%', minHeight: 768 }}>
+      <div>
         <CommonHeader />
         <Tab.Container>
-          <Row style={{ height: '100%', width: '100%', minHeight: 704 }}>
+          <Row>
             <Col sm={2}>
               <CategoryListGroup />
             </Col>
@@ -157,12 +157,11 @@ class MenuPage extends Component {
         </Tab.Container>
         <Modal
           show={this.props.menuModalState}
-          size="lg"
-          aria-labelledby="contained-modal-title-vcenter"
+          dialogClassName="modal-xl"
           centered
         >
           <Modal.Header>
-            <Button onClick={this.props.changeMenuModalState} variant="dark">
+            <Button onClick={this.props.changeMenuModalState} variant="dark" style={{ fontSize: 'xx-large' }}>
               <i className="fas fa-chevron-left" />
               &nbsp;Back
             </Button>
@@ -174,22 +173,22 @@ class MenuPage extends Component {
                   <img
                     src={this.props.selectedMenu.imgUrl}
                     alt={this.props.selectedMenu.name}
-                    style={{ height: 200 }}
+                    style={{ width: 500, height: 500 }}
                   />
                 </Col>
                 <Col>
                   <Row>
                     <Col>
-                      <h4>{this.props.selectedMenu.name}</h4>
+                      <h1>{this.props.selectedMenu.name}</h1>
                     </Col>
                     <Col>
-                      <h4>
+                      <h1>
                         $&nbsp;
                         {this.props.selectedMenu.price}
-                      </h4>
+                      </h1>
                     </Col>
                   </Row>
-                  <Row>
+                  <Row style={{ fontSize: 'xx-large' }}>
                     <br />
                     {this.props.selectedMenu.description}
                   </Row>
@@ -198,7 +197,7 @@ class MenuPage extends Component {
             </Container>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => { this.props.changeMenuModalState(); }}>
+            <Button onClick={() => { this.props.changeMenuModalState(); }} style={{ fontSize: 'xx-large' }}>
               <i className="fas fa-cart-plus" />
               &nbsp;Add to cart
             </Button>

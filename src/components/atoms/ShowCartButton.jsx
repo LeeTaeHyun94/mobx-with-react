@@ -5,7 +5,7 @@ class ShowCartButton extends Component {
   render() {
     return (
       <div>
-        <Button variant="success">
+        <Button variant="success" style={{ fontSize: 'xx-large' }}>
           <i className="fas fa-shopping-cart" />
           &nbsp;Cart&nbsp;
           <Badge variant="light">2</Badge>

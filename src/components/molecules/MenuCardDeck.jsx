@@ -23,7 +23,7 @@ class MenuCardDeck extends Component {
       />
     ));
     return (
-      <CardDeck style={{ height: '100%', width: '100%', overflow: 'auto' }}>
+      <CardDeck>
         {menuCardDeck}
       </CardDeck>
     );

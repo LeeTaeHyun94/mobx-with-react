@@ -5,7 +5,7 @@ class CallPennyButton extends Component {
   render() {
     return (
       <div>
-        <Button variant="info">Call Penny</Button>
+        <Button variant="info" style={{ fontSize: 'xx-large' }}>Call Penny</Button>
       </div>
     );
   }
