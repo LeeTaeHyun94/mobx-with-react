@@ -15,6 +15,7 @@ import MenuStore from './pages/common/modules/store/MenuStore';
 import DetailMenuStore from './pages/DetailMenu/modules/store/DetailMenuStore';
 import CategoryStore from './pages/common/modules/store/CategoryStore';
 import MenuModalStateStore from './pages/Menu/modules/store/MenuModalStateStore';
+import CartStore from './pages/Cart/modules/store/CartStore';
 
 const marketCounterRootStore = new MarketCounterRootStore();
 const itemStore = new ItemStore();
@@ -24,6 +25,7 @@ const pageStateStore = new PageStateStore();
 const detailMenuStore = new DetailMenuStore();
 const categoryStore = new CategoryStore();
 const menuModalStateStore = new MenuModalStateStore();
+const cartStore = new CartStore();
 
 const startApp = () => {
   ReactDOM.render(
@@ -36,6 +38,7 @@ const startApp = () => {
       detailMenuStore={detailMenuStore}
       categoryStore={categoryStore}
       menuModalStateStore={menuModalStateStore}
+      cartStore={cartStore}
     >
       <MainContainer />
     </Provider>,

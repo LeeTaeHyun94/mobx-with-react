@@ -1,16 +1,14 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import MenuPage from '../Menu/MenuPage';
-import DetailMenuPage from '../DetailMenu/DetailMenuPage';
+import CartPage from '../Cart/CartPage';
 
 function MainContainer(props) {
   const { pageState } = props;
   let page;
   switch (pageState) {
-    case 'WAITING':
     case 'MENU': page = <MenuPage />; break;
-    case 'DETAIL_MENU': page = <DetailMenuPage />; break;
-    case 'ORDER':
+    case 'CART': page = <CartPage />; break;
     default: page = <MenuPage />; break;
   }
   return page;

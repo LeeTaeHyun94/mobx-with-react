@@ -134,14 +134,16 @@ import CommonHeader from '../../components/molecules/CommonHeader';
 import CategoryListGroup from '../../components/molecules/CategoryListGroup';
 import MenuCardDeck from '../../components/molecules/MenuCardDeck';
 
-@inject(({ menuStore, menuModalStateStore }) => ({
+@inject(({ menuStore, menuModalStateStore, cartStore }) => ({
   selectedMenu: menuStore.selectedMenu,
   menuModalState: menuModalStateStore.menuModalState,
   changeMenuModalState: menuModalStateStore.changeState,
+  addToCart: cartStore.addToCart,
 }))
 @observer
 class MenuPage extends Component {
   render() {
+    const { selectedMenu } = this.props;
     return (
       <div>
         <CommonHeader />
@@ -171,33 +173,39 @@ class MenuPage extends Component {
               <Row>
                 <Col>
                   <img
-                    src={this.props.selectedMenu.imgUrl}
-                    alt={this.props.selectedMenu.name}
+                    src={selectedMenu.imgUrl}
+                    alt={selectedMenu.name}
                     style={{ width: 500, height: 500 }}
                   />
                 </Col>
                 <Col>
                   <Row>
                     <Col>
-                      <h1>{this.props.selectedMenu.name}</h1>
+                      <h1>{selectedMenu.name}</h1>
                     </Col>
                     <Col>
                       <h1>
                         $&nbsp;
-                        {this.props.selectedMenu.price}
+                        {selectedMenu.price}
                       </h1>
                     </Col>
                   </Row>
                   <Row style={{ fontSize: 'xx-large' }}>
                     <br />
-                    {this.props.selectedMenu.description}
+                    {selectedMenu.description}
                   </Row>
                 </Col>
               </Row>
             </Container>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => { this.props.changeMenuModalState(); }} style={{ fontSize: 'xx-large' }}>
+            <Button
+              onClick={() => {
+                this.props.changeMenuModalState();
+                this.props.addToCart(selectedMenu.name, selectedMenu.price);
+              }}
+              style={{ fontSize: 'xx-large' }}
+            >
               <i className="fas fa-cart-plus" />
               &nbsp;Add to cart
             </Button>

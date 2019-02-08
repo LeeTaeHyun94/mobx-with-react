@@ -17,7 +17,7 @@ const MenuCard = ({
       <Card.Img variant="top" src={url} style={{ height: 400 }} />
       <Card.Body>
         <Card.Title style={{ fontSize: 'xx-large' }}>{name}</Card.Title>
-        <div style={{ fontSize: 'x-large' }}>
+        <div style={{ fontSize: 'xx-large' }}>
           $&nbsp;
           {price}
         </div>

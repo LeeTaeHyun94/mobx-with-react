@@ -3,7 +3,7 @@ import { observable, action } from 'mobx';
 
 @autobind
 class PageStateStore {
-    // WAITING, MENU, DETAIL_MENU, ORDER
+    // MENU, CART
     @observable
     pageState = 'MENU';
 
