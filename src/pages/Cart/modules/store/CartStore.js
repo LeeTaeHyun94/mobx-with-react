@@ -1,5 +1,7 @@
 import { observable, action, computed } from 'mobx';
+import uuidv1 from 'uuid/v1';
 import CartItemModel from '../model/CartItemModel';
+import CartRepository from '../repository/CartRepository';
 
 export default class CartStore {
     @observable
@@ -30,7 +32,26 @@ export default class CartStore {
 
     @action
     sendOrder = () => {
-
+      const orderId = uuidv1();
+      const lineItems = [];
+      this.items.forEach((item) => {
+        lineItems.push({
+          name: item.name,
+          quantity: item.count,
+          base_price_money: {
+            amount: item.price,
+            currency: 'KRW',
+          },
+        });
+      });
+      CartRepository.createOrder({
+        idempotency_key: orderId,
+        line_items: lineItems,
+      });
+      CartRepository.sendOrderId({
+        table_num: 7,
+        order_id: orderId,
+      });
     };
 
     @computed

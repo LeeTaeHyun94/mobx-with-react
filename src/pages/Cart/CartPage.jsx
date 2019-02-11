@@ -64,7 +64,14 @@ class CartPage extends Component {
               </Button>
             </Col>
             <Col>
-              <Button variant="secondary" size="lg" style={{ fontSize: 'xx-large' }}>Send order</Button>
+              <Button
+                variant="secondary"
+                size="lg"
+                style={{ fontSize: 'xx-large' }}
+                onClick={() => { cartStore.sendOrder(); this.props.changePageState('MENU'); }}
+              >
+                Send order
+              </Button>
             </Col>
           </Row>
         </Container>
