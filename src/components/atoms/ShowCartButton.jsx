@@ -10,13 +10,30 @@ import { inject, observer } from 'mobx-react';
 class ShowCartButton extends Component {
   render() {
     return (
-      <div>
-        <Button variant="success" style={{ fontSize: 'xx-large' }} onClick={() => this.props.changePageState('CART')}>
-          <i className="fas fa-shopping-cart" />
-          &nbsp;Cart&nbsp;
-          <Badge variant="light">{this.props.cartItemCount}</Badge>
-        </Button>
-      </div>
+      <Button
+        variant="light"
+        style={{
+          color: 'white', fontSize: 'large', backgroundColor: '#00c853',
+        }}
+        onClick={() => this.props.changePageState('CART')}
+      >
+        <i className="fas fa-shopping-cart" />
+        <span style={{ paddingLeft: '1vw', paddingRight: '1vw' }}>
+          VIEW CART
+        </span>
+        <Badge
+          variant="light"
+          style={{
+            color: 'white',
+            fontSize: 'large',
+            backgroundColor: '#2e7d32',
+            top: 1,
+            paddingTop: 4,
+          }}
+        >
+          {this.props.cartItemCount}
+        </Badge>
+      </Button>
     );
   }
 }

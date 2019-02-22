@@ -11,7 +11,7 @@ class TotalPrice extends Component {
         <hr />
         <p>
           <b>
-            Total&nbsp;:&nbsp;$&nbsp;
+            Total : $&nbsp;
             {total}
           </b>
         </p>

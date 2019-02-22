@@ -5,7 +5,13 @@ class CallPennyButton extends Component {
   render() {
     return (
       <div>
-        <Button variant="info" style={{ fontSize: 'xx-large' }}>Call Penny</Button>
+        <Button
+          className="custom-btn"
+          variant="light"
+          style={{ color: 'white', fontSize: 'large', backgroundColor: '#03a9f4' }}
+        >
+          CALL PENNY
+        </Button>
       </div>
     );
   }

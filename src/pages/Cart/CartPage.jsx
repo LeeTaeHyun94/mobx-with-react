@@ -21,16 +21,18 @@ class CartPage extends Component {
         price={item.price}
         count={item.count}
         takeItem={cartStore.takeItem}
+        addItem={cartStore.addItem}
       />
     ));
     return (
       <div>
         <CommonHeader />
-        <Container style={{ fontSize: 'xx-large' }}>
-          <Row style={{ minHeight: 1000 }}>
+        <br />
+        <Container style={{ fontSize: 'large' }}>
+          <Row style={{ minHeight: '63vh' }}>
             <ListGroup>
               <ListGroup.Item style={{ backgroundColor: '#bbdefb' }}>
-                <Container style={{ minWidth: 1000 }}>
+                <Container style={{ minWidth: '75vw' }}>
                   <Row>
                     <Col>
                       Menu Name
@@ -45,19 +47,25 @@ class CartPage extends Component {
                   </Row>
                 </Container>
               </ListGroup.Item>
-              {cartItemListGroup}
+              <div style={{ height: '58vh', overflowY: 'scroll' }}>
+                {cartItemListGroup}
+              </div>
             </ListGroup>
           </Row>
-          <Row>
-            Total&nbsp;:&nbsp;$&nbsp;
-            {cartStore.total}
+          <Row style={{ fontSize: 'x-large' }}>
+            <div style={{ paddingLeft: '2vw' }}>
+              Total : $&nbsp;
+              {cartStore.total}
+            </div>
           </Row>
+          <hr />
           <Row>
             <Col>
               <Button
+                className="custom-btn"
                 variant="secondary"
                 size="lg"
-                style={{ fontSize: 'xx-large' }}
+                style={{ fontSize: 'large' }}
                 onClick={() => this.props.changePageState('MENU')}
               >
                 Add another item
@@ -65,9 +73,10 @@ class CartPage extends Component {
             </Col>
             <Col>
               <Button
+                className="custom-btn"
                 variant="secondary"
                 size="lg"
-                style={{ fontSize: 'xx-large' }}
+                style={{ fontSize: 'large' }}
                 onClick={() => { cartStore.sendOrder(); this.props.changePageState('MENU'); }}
               >
                 Send order

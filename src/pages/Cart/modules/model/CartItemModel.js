@@ -8,12 +8,12 @@ class CartItemModel {
     price;
 
     @observable
-    count = 0;
+    count = 1;
 
-    constructor(name, price) {
+    constructor(name, price, count) {
       this.name = name;
       this.price = price;
-      this.count = 1;
+      this.count = count;
     }
 }
 

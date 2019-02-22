@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { ListGroup } from 'react-bootstrap';
 import CategoryListGroupItem from '../atoms/CategoryListGroupItem';
+import './CategoryListGroup.css';
 
 @inject(({ categoryStore, menuStore }) => ({
   categoryList: categoryStore.categoryList,
@@ -20,7 +21,7 @@ class CategoryListGroup extends Component {
       />
     ));
     return (
-      <ListGroup style={{ height: 'auto', overflow: 'auto' }}>
+      <ListGroup>
         {categoryListGroup}
       </ListGroup>
     );

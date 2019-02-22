@@ -54,7 +54,7 @@ function MenuGridList(props) {
               title={tile.menuName}
               subtitle={(
                 <span>
-                    price:&nbsp;
+                  price:&nbsp;
                   {tile.price}
                 </span>
                 )}

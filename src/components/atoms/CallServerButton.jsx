@@ -5,7 +5,13 @@ class CallServerButton extends Component {
   render() {
     return (
       <div>
-        <Button variant="warning" style={{ fontSize: 'xx-large' }}>Call Server</Button>
+        <Button
+          className="custom-btn"
+          variant="light"
+          style={{ color: 'white', fontSize: 'large', backgroundColor: '#ff9800' }}
+        >
+          CALL SERVER
+        </Button>
       </div>
     );
   }

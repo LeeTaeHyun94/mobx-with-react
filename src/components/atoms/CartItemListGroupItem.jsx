@@ -4,11 +4,11 @@ import {
 } from 'react-bootstrap';
 
 const CartItemListGroupItem = ({
-  name, price, count, takeItem,
+  name, price, count, takeItem, addItem,
 }) => (
   <ListGroup.Item>
-    <Container style={{ minWidth: 1000 }}>
-      <Row>
+    <Container>
+      <Row style={{ verticalAlign: 'center' }}>
         <Col>
           {name}
         </Col>
@@ -21,9 +21,15 @@ const CartItemListGroupItem = ({
           {count}
         </Col>
         <Col sm={2}>
-          <Button variant="danger" onClick={() => takeItem(name)} style={{ fontSize: 'xx-large' }}>
-            <i className="far fa-trash-alt" />
-          </Button>
+          <Row>
+            <Button variant="danger" onClick={() => takeItem(name)} style={{ width: '6vw' }}>
+              <i className="fas fa-minus" />
+            </Button>
+            &nbsp;
+            <Button variant="success" onClick={() => addItem(name)} style={{ width: '6vw' }}>
+              <i className="fas fa-plus" />
+            </Button>
+          </Row>
         </Col>
       </Row>
     </Container>

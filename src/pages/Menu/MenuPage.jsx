@@ -133,12 +133,15 @@ import { inject, observer } from 'mobx-react';
 import CommonHeader from '../../components/molecules/CommonHeader';
 import CategoryListGroup from '../../components/molecules/CategoryListGroup';
 import MenuCardDeck from '../../components/molecules/MenuCardDeck';
+import QuantityCounter from '../../components/molecules/QuantityCounter';
+import './MenuModal.css';
 
 @inject(({ menuStore, menuModalStateStore, cartStore }) => ({
   selectedMenu: menuStore.selectedMenu,
   menuModalState: menuModalStateStore.menuModalState,
   changeMenuModalState: menuModalStateStore.changeState,
   addToCart: cartStore.addToCart,
+  initQuantityCounterNumber: cartStore.initQuantityCounterNumber,
 }))
 @observer
 class MenuPage extends Component {
@@ -147,25 +150,35 @@ class MenuPage extends Component {
     return (
       <div>
         <CommonHeader />
+        <br />
         <Tab.Container>
-          <Row>
-            <Col sm={2}>
+          <Row style={{ margin: 0 }}>
+            <Col sm={2} style={{ paddingRight: 5, overflowY: 'scroll' }}>
               <CategoryListGroup />
             </Col>
-            <Col>
+            <Col style={{ overflowY: 'scroll' }}>
               <MenuCardDeck />
             </Col>
           </Row>
         </Tab.Container>
         <Modal
           show={this.props.menuModalState}
-          dialogClassName="modal-xl"
+          dialogClassName="custom-modal-wd"
           centered
         >
           <Modal.Header>
-            <Button onClick={this.props.changeMenuModalState} variant="dark" style={{ fontSize: 'xx-large' }}>
+            <Button
+              onClick={() => {
+                this.props.changeMenuModalState();
+                this.props.initQuantityCounterNumber();
+              }}
+              variant="secondary"
+              style={{ fontSize: 'larger' }}
+            >
               <i className="fas fa-chevron-left" />
-              &nbsp;Back
+              <span style={{ paddingLeft: '1vw' }}>
+                BACK
+              </span>
             </Button>
           </Modal.Header>
           <Modal.Body>
@@ -175,39 +188,44 @@ class MenuPage extends Component {
                   <img
                     src={selectedMenu.imgUrl}
                     alt={selectedMenu.name}
-                    style={{ width: 500, height: 500 }}
+                    style={{ width: '45vh', height: '45vh' }}
                   />
                 </Col>
                 <Col>
                   <Row>
                     <Col>
-                      <h1>{selectedMenu.name}</h1>
+                      <h3>{selectedMenu.name}</h3>
                     </Col>
                     <Col>
-                      <h1>
+                      <h3>
                         $&nbsp;
                         {selectedMenu.price}
-                      </h1>
+                      </h3>
                     </Col>
                   </Row>
-                  <Row style={{ fontSize: 'xx-large' }}>
+                  <Row style={{ fontSize: 'large' }}>
                     <br />
                     {selectedMenu.description}
                   </Row>
+                  <br />
+                  <QuantityCounter />
                 </Col>
               </Row>
             </Container>
           </Modal.Body>
           <Modal.Footer>
             <Button
+              className="custom-btn"
               onClick={() => {
                 this.props.changeMenuModalState();
                 this.props.addToCart(selectedMenu.name, selectedMenu.price);
               }}
-              style={{ fontSize: 'xx-large' }}
+              style={{ fontSize: 'large' }}
             >
               <i className="fas fa-cart-plus" />
-              &nbsp;Add to cart
+              <span style={{ paddingLeft: '1vw' }}>
+                Add to cart
+              </span>
             </Button>
           </Modal.Footer>
         </Modal>

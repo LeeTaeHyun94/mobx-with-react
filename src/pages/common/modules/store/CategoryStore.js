@@ -8,8 +8,7 @@ class CategoryStore {
     @observable
     categoryList = [];
 
-    constructor(rootStore) {
-      this.rootStore = rootStore;
+    constructor() {
       categoryRepository.findAll()
         .then((res) => {
           this.categoryList = res.data.map(

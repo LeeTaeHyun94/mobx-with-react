@@ -9,31 +9,66 @@ export default class CartStore {
     @observable
     itemCount = 0;
 
+    @observable
+    quantityCounterNumber = 1;
+
+    @observable
+    tableNumber = 1;
+
+    @action
+    changeTableNumber = (tableNumber) => {
+      this.tableNumber = tableNumber;
+    }
+
+    @action
+    initQuantityCounterNumber = () => {
+      this.quantityCounterNumber = 1;
+    }
+
+    @action
+    increaseQuantityCounterNumber = () => {
+      this.quantityCounterNumber += 1;
+    };
+
+    @action
+    decreaseQuantityCounterNumber = () => {
+      if (this.quantityCounterNumber < 2) return;
+      this.quantityCounterNumber -= 1;
+    };
+
     @action
     addToCart = (name, price) => {
       const existedItem = this.items.find(item => item.name === name);
-      if (existedItem) existedItem.count += 1;
+      if (existedItem) existedItem.count += this.quantityCounterNumber;
       else {
-        this.items.push(new CartItemModel(name, price));
-        this.itemCount += 1;
+        this.items.push(
+          new CartItemModel(name, price, this.quantityCounterNumber),
+        );
       }
+      this.itemCount += this.quantityCounterNumber;
+      this.initQuantityCounterNumber();
+    };
+
+    @action
+    addItem = (name) => {
+      const itemToTake = this.items.find(item => item.name === name);
+      itemToTake.count += 1;
+      this.itemCount += 1;
     };
 
     @action
     takeItem = (name) => {
       const itemToTake = this.items.find(item => item.name === name);
       itemToTake.count -= 1;
-      if (itemToTake.count === 0) {
-        this.items.remove(itemToTake);
-        this.itemCount -= 1;
-      }
+      this.itemCount -= 1;
+      if (itemToTake.count === 0) this.items.remove(itemToTake);
     };
 
     @action
     sendOrder = () => {
       CartRepository.createOrder({
-        table_num: 7,
-        order: this.items,
+        table_num: this.tableNumber,
+        order_items: this.items,
       }).then((res) => {
         if (res.status === 201) {
           this.itemCount = 0;

@@ -9,7 +9,7 @@ const CategoryListGroupItem = ({
     onClick={() => {
       getMenu(categoryName);
     }}
-    style={{ fontSize: 'xx-large' }}
+    style={{ fontSize: 'large' }}
   >
     {categoryName}
   </ListGroup.Item>
